@@ -10,24 +10,24 @@ function CartPage() {
   const { token } = useContext(AuthContext);
   const { showNotification } = useNotification();
 
-  const fetchCartItems = async () => {
-    if (!token) {
-      setLoading(false);
-      return;
-    }
-    try {
-      const response = await API.get("/cart", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
-      setCartItems(response.data);
-    } catch (error) {
-      console.error("Error fetching cart items:", error);
-    } finally {
-      setLoading(false);
-    }
-  };
-
   useEffect(() => {
+    const fetchCartItems = async () => {
+      if (!token) {
+        setLoading(false);
+        return;
+      }
+      try {
+        const response = await API.get("/cart", {
+          headers: { Authorization: `Bearer ${token}` },
+        });
+        setCartItems(response.data);
+      } catch (error) {
+        console.error("Error fetching cart items:", error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
     fetchCartItems();
   }, [token]);
 
@@ -77,11 +77,21 @@ function CartPage() {
   };
 
   const handleImageError = (e) => {
-    e.target.src = "https://via.placeholder.com/120x120.png?text=No+Image";
+    e.target.src = "https://placehold.co/120x120?text=No+Image";
   };
 
-  if (loading) return <p>Loading your cart...</p>;
-  if (!token) return <p>Please log in to see your cart.</p>;
+  // --- CHANGE IS HERE: Conditionally render spinner ---
+  if (loading) {
+    return (
+      <div className="spinner-container">
+        <div className="spinner"></div>
+      </div>
+    );
+  }
+
+  if (!token) {
+    return <p>Please log in to see your cart.</p>;
+  }
 
   return (
     <div>
