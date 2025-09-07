@@ -5,27 +5,23 @@ import { useNotification } from "../context/NotificationContext.jsx";
 import { useProducts } from "../context/ProductContext.jsx";
 
 function HomePage() {
-  const { products } = useProducts();
+  const { products, loading } = useProducts(); // Get loading state from context
   const [filteredProducts, setFilteredProducts] = useState([]);
   const { token } = useContext(AuthContext);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [maxPrice, setMaxPrice] = useState(200000);
+  const [maxPrice, setMaxPrice] = useState(20000);
   const [activeCardId, setActiveCardId] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const { showNotification } = useNotification();
-  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchCategories = async () => {
-      setLoading(true);
       try {
         const response = await API.get("/products/categories");
         setCategories(response.data);
       } catch (error) {
         console.error("Error fetching categories:", error);
-      } finally {
-        setLoading(false);
       }
     };
     fetchCategories();
@@ -75,6 +71,14 @@ function HomePage() {
     e.target.src = "https://placehold.co/300x200?text=No+Image";
   };
 
+  if (loading) {
+    return (
+      <div className="spinner-container">
+        <div className="spinner"></div>
+      </div>
+    );
+  }
+
   return (
     <div>
       <h1>Our Products</h1>
@@ -108,7 +112,6 @@ function HomePage() {
         </div>
       </div>
       <div className="product-list">
-        {/* --- CHANGE IS HERE --- */}
         {filteredProducts.length > 0 ? (
           filteredProducts.map((product) => (
             <div key={product._id} className="product-card">
