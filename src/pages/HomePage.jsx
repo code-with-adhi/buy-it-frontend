@@ -82,35 +82,62 @@ function HomePage() {
   return (
     <div>
       <h1>Our Products</h1>
-      <div className="filters">
-        <div className="filter-group">
-          <label htmlFor="category">Category:</label>
-          <select
-            id="category"
-            value={selectedCategory}
-            onChange={(e) => setSelectedCategory(e.target.value)}
-          >
-            <option value="">All</option>
-            {categories.map((cat) => (
-              <option key={cat} value={cat}>
-                {cat}
-              </option>
-            ))}
-          </select>
+
+      {/* Modern Filters */}
+      <div className="modern-filters">
+        <div className="filter-item">
+          <label className="filter-label">CATEGORY:</label>
+          <div className="select-wrapper">
+            <select
+              className="custom-select"
+              value={selectedCategory}
+              onChange={(e) => setSelectedCategory(e.target.value)}
+            >
+              <option value="">All</option>
+              {categories.map((cat) => (
+                <option key={cat} value={cat}>
+                  {cat}
+                </option>
+              ))}
+            </select>
+            <div className="select-arrow">
+              <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+                <path
+                  d="M1 1.5L6 6.5L11 1.5"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+            </div>
+          </div>
         </div>
-        <div className="filter-group">
-          <label htmlFor="price">Max Price: ₹{maxPrice}</label>
-          <input
-            type="range"
-            id="price"
-            min="0"
-            max="20000"
-            step="500"
-            value={maxPrice}
-            onChange={(e) => setMaxPrice(e.target.value)}
-          />
+
+        <div className="filter-item">
+          <label className="filter-label">
+            MAX PRICE: ₹{maxPrice.toLocaleString()}
+          </label>
+          <div className="slider-wrapper">
+            <input
+              type="range"
+              min="0"
+              max="20000"
+              step="500"
+              value={maxPrice}
+              onChange={(e) => setMaxPrice(e.target.value)}
+              className="price-slider"
+            />
+            <div className="slider-track">
+              <div
+                className="slider-fill"
+                style={{ width: `${(maxPrice / 20000) * 100}%` }}
+              ></div>
+            </div>
+          </div>
         </div>
       </div>
+
       <div className="product-list">
         {filteredProducts.length > 0 ? (
           filteredProducts.map((product) => (
