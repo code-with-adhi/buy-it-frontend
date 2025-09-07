@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import axios from "axios";
-import { useNotification } from "../context/NotificationContext";
+import API from "../api.js";
+import { useNotification } from "../context/NotificationContext.jsx";
 
 function SignupPage() {
   const [email, setEmail] = useState("");
@@ -10,10 +10,7 @@ function SignupPage() {
   const handleSignup = async (e) => {
     e.preventDefault();
     try {
-      await axios.post("http://localhost:5000/api/auth/register", {
-        email,
-        password,
-      });
+      await API.post("/auth/register", { email, password });
       showNotification("Registration successful! Please log in.");
     } catch (error) {
       console.error("Signup error:", error.response.data.message);

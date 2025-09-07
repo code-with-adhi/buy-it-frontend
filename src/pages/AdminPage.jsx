@@ -1,5 +1,6 @@
 import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
+import axios from "axios"; // For Cloudinary upload
+import API from "../api.js"; // For your backend API
 import { AuthContext } from "../context/AuthContext.jsx";
 import { useNotification } from "../context/NotificationContext.jsx";
 import { useProducts } from "../context/ProductContext.jsx";
@@ -55,12 +56,12 @@ function AdminPage() {
     if (imageFile) {
       const uploadData = new FormData();
       uploadData.append("file", imageFile);
-      uploadData.append("upload_preset", "cevrzf7f"); 
+      uploadData.append("upload_preset", "cevrzf7f"); // Replace with your actual preset
 
       try {
         showNotification("Uploading image...");
         const response = await axios.post(
-          `https://api.cloudinary.com/v1_1/dyzdtdgp9/image/upload`,
+          `https://api.cloudinary.com/v1_1/dyzdtdgp9/image/upload`, // Replace with your actual cloud name
           uploadData
         );
         finalImageUrl = response.data.secure_url;
@@ -79,18 +80,10 @@ function AdminPage() {
 
     try {
       if (selectedProductId) {
-        await axios.put(
-          `http://localhost:5000/api/products/${selectedProductId}`,
-          productData,
-          apiConfig
-        );
+        await API.put(`/products/${selectedProductId}`, productData, apiConfig);
         showNotification("Product updated successfully!");
       } else {
-        await axios.post(
-          "http://localhost:5000/api/products",
-          productData,
-          apiConfig
-        );
+        await API.post("/products", productData, apiConfig);
         showNotification("Product created successfully!");
       }
 
@@ -113,12 +106,9 @@ function AdminPage() {
       return;
     }
     try {
-      await axios.delete(
-        `http://localhost:5000/api/products/${selectedProductId}`,
-        {
-          headers: { Authorization: `Bearer ${token}` },
-        }
-      );
+      await API.delete(`/products/${selectedProductId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
       showNotification("Product deleted successfully!", "error");
       refetchProducts();
       setSelectedProductId("");

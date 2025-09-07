@@ -1,8 +1,8 @@
 import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
+import API from "../api.js";
 import { Link } from "react-router-dom";
-import { AuthContext } from "../context/AuthContext";
-import { useNotification } from "../context/NotificationContext";
+import { AuthContext } from "../context/AuthContext.jsx";
+import { useNotification } from "../context/NotificationContext.jsx";
 
 function CartPage() {
   const [cartItems, setCartItems] = useState([]);
@@ -10,24 +10,24 @@ function CartPage() {
   const { token } = useContext(AuthContext);
   const { showNotification } = useNotification();
 
-  useEffect(() => {
-    const fetchCartItems = async () => {
-      if (!token) {
-        setLoading(false);
-        return;
-      }
-      try {
-        const response = await axios.get("http://localhost:5000/api/cart", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
-        setCartItems(response.data);
-      } catch (error) {
-        console.error("Error fetching cart items:", error);
-      } finally {
-        setLoading(false);
-      }
-    };
+  const fetchCartItems = async () => {
+    if (!token) {
+      setLoading(false);
+      return;
+    }
+    try {
+      const response = await API.get("/cart", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setCartItems(response.data);
+    } catch (error) {
+      console.error("Error fetching cart items:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
+  useEffect(() => {
     fetchCartItems();
   }, [token]);
 
@@ -37,8 +37,8 @@ function CartPage() {
       return;
     }
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/cart/update-quantity",
+      const response = await API.post(
+        "/cart/update-quantity",
         { productId, quantity: newQuantity },
         { headers: { Authorization: `Bearer ${token}` } }
       );
@@ -51,8 +51,8 @@ function CartPage() {
 
   const handleRemoveItem = async (productId) => {
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/cart/remove",
+      const response = await API.post(
+        "/cart/remove",
         { productId },
         { headers: { Authorization: `Bearer ${token}` } }
       );

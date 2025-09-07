@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import axios from "axios";
+import API from "../api.js";
 import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext.jsx";
 import { useNotification } from "../context/NotificationContext.jsx";
@@ -14,14 +14,9 @@ function LoginPage() {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/auth/login",
-        { email, password }
-      );
+      const response = await API.post("/auth/login", { email, password });
       const { token, user } = response.data;
-
       login(token, user);
-
       showNotification("Login successful!");
       navigate("/");
     } catch (error) {

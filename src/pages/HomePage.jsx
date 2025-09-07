@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useContext } from "react";
-import axios from "axios";
+import API from "../api.js";
 import { AuthContext } from "../context/AuthContext.jsx";
 import { useNotification } from "../context/NotificationContext.jsx";
 import { useProducts } from "../context/ProductContext.jsx";
@@ -10,7 +10,7 @@ function HomePage() {
   const { token } = useContext(AuthContext);
   const [categories, setCategories] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState("");
-  const [maxPrice, setMaxPrice] = useState(200000);
+  const [maxPrice, setMaxPrice] = useState(20000);
   const [activeCardId, setActiveCardId] = useState(null);
   const [quantity, setQuantity] = useState(1);
   const { showNotification } = useNotification();
@@ -18,9 +18,7 @@ function HomePage() {
   useEffect(() => {
     const fetchCategories = async () => {
       try {
-        const response = await axios.get(
-          "http://localhost:5000/api/products/categories"
-        );
+        const response = await API.get("/products/categories");
         setCategories(response.data);
       } catch (error) {
         console.error("Error fetching categories:", error);
@@ -51,8 +49,8 @@ function HomePage() {
       return;
     }
     try {
-      await axios.post(
-        "http://localhost:5000/api/cart/add",
+      await API.post(
+        "/cart/add",
         { productId, quantity },
         { headers: { Authorization: `Bearer ${token}` } }
       );
