@@ -1228,3 +1228,41 @@ textarea:focus-visible {
     color-scheme: dark;
   }
 }
+/* --- Clear Cart Button Style --- */
+.clear-cart-btn {
+  display: block;
+  margin: 0 auto 2rem auto; /* Center the button */
+  background: none;
+  border: 1px solid var(--danger-color);
+  color: var(--danger-color);
+  box-shadow: none;
+  text-transform: none;
+  font-weight: 500;
+}
+
+.clear-cart-btn:hover {
+  background: var(--danger-color);
+  color: white;
+  transform: none;
+}
+/* --- Cart Subtotal Styles --- */
+.subtotal-list {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.subtotal-item {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.subtotal-item span:first-child {
+  max-width: 70%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}

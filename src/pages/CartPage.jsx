@@ -27,7 +27,6 @@ function CartPage() {
         setLoading(false);
       }
     };
-
     fetchCartItems();
   }, [token]);
 
@@ -64,6 +63,26 @@ function CartPage() {
     }
   };
 
+  const handleClearCart = async () => {
+    if (
+      !window.confirm(
+        "Are you sure you want to remove all items from your cart?"
+      )
+    ) {
+      return;
+    }
+    try {
+      const response = await API.delete("/cart", {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+      setCartItems(response.data);
+      showNotification("Cart has been cleared.", "error");
+    } catch (error) {
+      console.error("Error clearing cart:", error);
+      showNotification("Failed to clear cart.", "error");
+    }
+  };
+
   const calculateTotal = () => {
     if (!cartItems || cartItems.length === 0) return "0.00";
     return cartItems
@@ -80,7 +99,6 @@ function CartPage() {
     e.target.src = "https://placehold.co/120x120?text=No+Image";
   };
 
-  // --- CHANGE IS HERE: Conditionally render spinner ---
   if (loading) {
     return (
       <div className="spinner-container">
@@ -96,6 +114,13 @@ function CartPage() {
   return (
     <div>
       <h1>Your Cart</h1>
+
+      {cartItems.length > 0 && (
+        <button onClick={handleClearCart} className="clear-cart-btn">
+          Clear All Items
+        </button>
+      )}
+
       {cartItems.length === 0 ? (
         <div className="cart-empty">
           <p>Your cart is empty.</p>
@@ -164,6 +189,25 @@ function CartPage() {
           </div>
           <div className="cart-summary">
             <h2>Order Summary</h2>
+
+            {/* --- NEW SUBTOTAL SECTION --- */}
+            <div className="subtotal-list">
+              {cartItems.map(
+                (item) =>
+                  item &&
+                  item.productId && (
+                    <div key={item.productId._id} className="subtotal-item">
+                      <span>
+                        {item.productId.name} (x{item.quantity})
+                      </span>
+                      <span>
+                        ₹{(item.productId.price * item.quantity).toFixed(2)}
+                      </span>
+                    </div>
+                  )
+              )}
+            </div>
+
             <div className="total-price">
               <span>Total:</span>
               <span>₹{calculateTotal()}</span>
