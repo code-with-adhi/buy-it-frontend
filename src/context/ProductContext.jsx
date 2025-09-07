@@ -1,5 +1,5 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
-import axios from "axios";
+import API from "../api.js";
 
 const ProductContext = createContext();
 
@@ -12,8 +12,9 @@ export const ProductProvider = ({ children }) => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get(
-        `http://localhost:5000/api/products?timestamp=${new Date().getTime()}`
+      // Use the API instance and a relative path
+      const response = await API.get(
+        `/products?timestamp=${new Date().getTime()}`
       );
       setProducts(response.data);
     } catch (error) {
