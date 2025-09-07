@@ -801,6 +801,775 @@ button:active {
   }
 }
 
+/* --- Premium Cart Styling --- */
+.cart-container {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 2.5rem;
+  align-items: flex-start;
+}
+
+.cart-item {
+  display: flex;
+  gap: 1.25rem;
+  margin-bottom: 1.5rem;
+  padding: 2rem;
+  background: var(--gradient-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--border-radius-xl);
+  box-shadow: var(--shadow-md);
+  transition: all 0.3s ease;
+}
+
+.cart-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-lg);
+}
+
+.cart-item:last-child {
+  margin-bottom: 0;
+}
+
+.cart-item-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: var(--border-radius-lg);
+  flex-shrink: 0;
+  background: white;
+  padding: 0.5rem;
+}
+
+.cart-item-details {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.cart-item-details h3 {
+  margin-bottom: 0.5rem;
+  font-size: 1.125rem;
+  background: var(--gradient-primary);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cart-item-details p {
+  color: var(--text-secondary);
+  font-size: 0.875rem;
+  margin-bottom: 0.75rem;
+}
+
+.cart-item-actions {
+  display: flex;
+  align-items: center;
+  margin-top: auto;
+  gap: 1rem;
+}
+
+.quantity-selector-cart {
+  display: flex;
+  align-items: center;
+  border: 1px solid var(--border-primary);
+  border-radius: var(--border-radius-lg);
+  overflow: hidden;
+  background: var(--bg-secondary);
+}
+
+.quantity-selector-cart button {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: none;
+  background: var(--bg-tertiary);
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 600;
+  box-shadow: none;
+  transition: all 0.2s ease;
+}
+
+.quantity-selector-cart button:hover {
+  background: var(--accent-primary);
+  color: white;
+  transform: none;
+}
+
+.quantity-selector-cart span {
+  padding: 0 1rem;
+  background: var(--bg-primary);
+  color: var(--text-primary);
+  font-size: 0.875rem;
+  font-weight: 600;
+  min-width: 50px;
+  text-align: center;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.remove-btn {
+  background: var(--danger-bg);
+  border: 1px solid var(--danger-color);
+  color: var(--danger-color);
+  font-size: 0.75rem;
+  padding: 0.5rem 1rem;
+  box-shadow: none;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  height: auto;
+  font-weight: 600;
+}
+
+.remove-btn:hover {
+  background: var(--danger-color);
+  color: white;
+  transform: none;
+}
+
+/* --- Premium Cart Summary --- */
+.cart-summary {
+  background: var(--gradient-card);
+  border: 1px solid var(--border-primary);
+  border-radius: var(--border-radius-2xl);
+  padding: 2rem;
+  position: sticky;
+  top: 6rem;
+  box-shadow: var(--shadow-xl);
+  backdrop-filter: var(--blur-backdrop);
+}
+
+.cart-summary h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  background: var(--gradient-primary);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  font-size: 1.5rem;
+}
+
+.total-price {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  background: var(--gradient-primary);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.back-to-shop-btn {
+  display: block;
+  width: 100%;
+  text-align: center;
+  padding: 1rem;
+  background: var(--gradient-primary);
+  color: white;
+  text-decoration: none;
+  border-radius: var(--border-radius-lg);
+  font-weight: 600;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 0.025em;
+}
+
+.back-to-shop-btn:hover {
+  transform: translateY(-2px) scale(1.02);
+  box-shadow: var(--shadow-lg), var(--shadow-glow);
+}
+
+.cart-empty {
+  text-align: center;
+  padding: 4rem 0;
+}
+
+.cart-empty p {
+  font-size: 1.25rem;
+  margin-bottom: 2rem;
+  color: var(--text-secondary);
+}
+
+/* --- Premium Notifications --- */
+.notification {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  padding: 1rem 2rem;
+  border-radius: var(--border-radius-xl);
+  color: white;
+  font-weight: 600;
+  box-shadow: var(--shadow-xl);
+  z-index: 1000;
+  animation: slideInOut 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+  font-size: 0.875rem;
+  backdrop-filter: var(--blur-backdrop);
+  min-width: 300px;
+  text-align: center;
+}
+
+.notification.success {
+  background: linear-gradient(135deg, var(--success-color), #059669);
+  box-shadow: var(--shadow-xl), 0 0 20px rgba(16, 185, 129, 0.4);
+}
+
+.notification.error {
+  background: linear-gradient(135deg, var(--danger-color), #dc2626);
+  box-shadow: var(--shadow-xl), 0 0 20px rgba(244, 63, 94, 0.4);
+}
+
+@keyframes slideInOut {
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(100px) scale(0.8);
+  }
+  10%,
+  90% {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0) scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px) scale(0.9);
+  }
+}
+
+/* --- Navigation Back Button --- */
+.nav-back-btn {
+  color: var(--text-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.875rem;
+  transition: all 0.3s ease;
+  padding: 0.75rem 1rem;
+  border-radius: var(--border-radius-md);
+  font-family: "Inter", sans-serif;
+}
+
+.nav-back-btn:hover {
+  color: var(--text-primary);
+  background: var(--bg-tertiary);
+  transform: translateX(-2px);
+}
+/* admin page */
+.admin-page h1 {
+  font-size: 1.75rem;
+  font-weight: 800;
+  text-align: center;
+  color: var(--accent-primary);
+  margin-bottom: 2rem;
+  position: relative;
+}
+
+.admin-page h1::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: var(--accent-primary);
+  margin: 0.5rem auto 0;
+  border-radius: 3px;
+}
+.admin-form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem 1.5rem;
+}
+
+.admin-form .form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.admin-form .form-span-2 {
+  grid-column: span 2;
+}
+.admin-form label {
+  margin-bottom: 0.4rem;
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.admin-form input,
+.admin-form select,
+.admin-form textarea {
+  border-radius: 10px;
+  padding: 0.9rem 1rem;
+  font-size: 0.95rem;
+}
+.form-container {
+  background: var(--bg-primary);
+  padding: 2rem 2.5rem;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+  margin: 2rem auto;
+}
+.admin-buttons-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 2rem;
+}
+
+.admin-submit-btn,
+.admin-delete-btn {
+  flex: 1;
+  text-align: center;
+}
+
+/* --- Loading Spinner --- */
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5rem;
+}
+
+.spinner {
+  width: 60px;
+  height: 60px;
+  border: 4px solid var(--border-primary);
+  border-top: 4px solid var(--accent-primary);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  position: relative;
+}
+
+.spinner::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  background: var(--accent-primary);
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  opacity: 0.8;
+  animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes pulse {
+  0%,
+  100% {
+    transform: translate(-50%, -50%) scale(1);
+    opacity: 0.8;
+  }
+  50% {
+    transform: translate(-50%, -50%) scale(1.2);
+    opacity: 0.4;
+  }
+}
+
+/* --- Enhanced Responsive Design --- */
+@media (max-width: 1024px) {
+  .admin-form {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .form-span-2 {
+    grid-column: span 1;
+  }
+
+  .admin-buttons-container {
+    grid-column: span 1;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 768px) {
+  .container {
+    padding: 0 1rem;
+  }
+
+  .navbar {
+    padding: 0 1rem;
+    height: 70px;
+  }
+
+  .logo {
+    font-size: 1.5rem;
+  }
+
+  .nav-links {
+    gap: 0.5rem;
+  }
+
+  .nav-links a,
+  .nav-links button {
+    font-size: 0.8rem;
+    padding: 0.5rem 0.75rem;
+  }
+
+  .container h1 {
+    font-size: 2rem;
+  }
+
+  .product-list {
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.5rem;
+  }
+
+  .cart-container {
+    grid-template-columns: 1fr;
+    gap: 2rem;
+  }
+
+  .filters {
+    flex-direction: column;
+    gap: 1rem;
+    align-items: stretch;
+    padding: 1.25rem;
+  }
+
+  .filter-group {
+    justify-content: space-between;
+  }
+
+  .form-container {
+    margin: 1rem;
+    padding: 2rem;
+    min-height: 550px;
+  }
+
+  .admin-page {
+    margin: 1rem;
+    padding: 2rem;
+  }
+
+  .admin-page h1 {
+    font-size: 2rem;
+  }
+
+  .cart-item {
+    padding: 1.5rem;
+  }
+
+  .cart-item-image {
+    width: 80px;
+    height: 80px;
+  }
+}
+
+@media (max-width: 480px) {
+  .product-list {
+    grid-template-columns: 1fr;
+  }
+
+  .form-container {
+    padding: 1.5rem;
+    min-height: 500px;
+  }
+
+  .admin-page {
+    padding: 1.5rem;
+  }
+
+  .navbar {
+    height: 60px;
+    padding: 0 0.75rem;
+  }
+
+  .logo {
+    font-size: 1.25rem;
+  }
+
+  .nav-links a,
+  .nav-links button {
+    font-size: 0.75rem;
+    padding: 0.4rem 0.6rem;
+  }
+}
+
+/* --- Accessibility Improvements --- */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* --- Focus Visible for Better Accessibility --- */
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent-primary);
+  outline-offset: 2px;
+}
+
+/* --- High Contrast Mode Support --- */
+@media (prefers-contrast: high) {
+  :root {
+    --text-primary: #ffffff;
+    --text-secondary: #e5e5e5;
+    --border-primary: #666666;
+    --bg-secondary: #1a1a1a;
+  }
+}
+
+/* --- Dark Mode Enhancements --- */
+@media (prefers-color-scheme: dark) {
+  body {
+    color-scheme: dark;
+  }
+}
+/* --- Clear Cart Button Style --- */
+.clear-cart-btn {
+  display: block;
+  margin: 0 auto 2rem auto; /* Center the button */
+  background: none;
+  border: 1px solid var(--danger-color);
+  color: var(--danger-color);
+  box-shadow: none;
+  text-transform: none;
+  font-weight: 500;
+}
+
+.clear-cart-btn:hover {
+  background: var(--danger-color);
+  color: white;
+  transform: none;
+}
+/* --- Cart Subtotal Styles --- */
+.subtotal-list {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-primary);
+}
+
+.subtotal-item {
+  display: flex;
+  justify-content: space-between;
+  color: var(--text-secondary);
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.subtotal-item span:first-child {
+  max-width: 70%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+/* --- Enhanced Mobile Responsive Design for Forms --- */
+
+/* Override existing form-container styles for better mobile experience */
+@media (max-width: 768px) {
+  .form-container {
+    min-width: unset; /* Remove fixed min-width */
+    width: 100%; /* Full width on mobile */
+    max-width: 400px; /* Reasonable max width */
+    margin: 1rem auto; /* Center with small margins */
+    padding: 1.5rem; /* Reduced padding */
+    border-radius: var(--border-radius-xl); /* Slightly smaller border radius */
+    box-shadow: var(--shadow-lg); /* Lighter shadow for mobile */
+  }
+
+  .form-container h1 {
+    font-size: 1.75rem; /* Smaller title */
+    margin-bottom: 1.25rem; /* Reduced margin */
+  }
+
+  .form-container h1::after {
+    width: 60px; /* Smaller underline */
+    height: 2px;
+  }
+
+  .form-container form {
+    gap: 1rem; /* Reduced gap between form elements */
+  }
+
+  .form-container label {
+    font-size: 0.8rem; /* Smaller label text */
+    margin-bottom: 0.4rem;
+  }
+
+  .form-container input {
+    padding: 0.75rem 0.875rem; /* Reduced input padding */
+    font-size: 0.875rem; /* Slightly smaller input text */
+  }
+
+  .form-container button {
+    padding: 0.875rem 1.5rem; /* Reduced button padding */
+    font-size: 0.875rem; /* Smaller button text */
+    margin-top: 0.25rem;
+  }
+
+  .form-toggle-link {
+    margin-top: 0.75rem; /* Reduced spacing */
+    font-size: 0.8rem; /* Smaller toggle link text */
+  }
+
+  .form-error-container {
+    height: 1.75rem; /* Reduced error container height */
+  }
+
+  .form-error {
+    font-size: 0.8rem; /* Smaller error text */
+  }
+}
+
+/* Extra small mobile devices */
+@media (max-width: 480px) {
+  .container {
+    padding: 0 0.75rem; /* Even smaller container padding */
+  }
+
+  .form-container {
+    margin: 0.75rem auto; /* Smaller margins */
+    padding: 1.25rem; /* Even more reduced padding */
+    max-width: 350px; /* Smaller max width for very small screens */
+  }
+
+  .form-container h1 {
+    font-size: 1.5rem; /* Even smaller title */
+    margin-bottom: 1rem;
+  }
+
+  .form-container h1::after {
+    width: 50px; /* Even smaller underline */
+  }
+
+  .form-container input {
+    padding: 0.7rem 0.8rem; /* More compact input padding */
+    font-size: 0.85rem;
+  }
+
+  .form-container button {
+    padding: 0.8rem 1.25rem; /* More compact button */
+    font-size: 0.85rem;
+  }
+
+  .form-container label {
+    font-size: 0.75rem; /* Even smaller labels */
+  }
+
+  .form-toggle-link {
+    font-size: 0.75rem; /* Smaller toggle text */
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 768px) and (orientation: landscape) {
+  .form-container {
+    margin: 0.5rem auto; /* Smaller top/bottom margins in landscape */
+    padding: 1.25rem;
+    max-height: 90vh; /* Prevent overflow in landscape */
+    overflow-y: auto; /* Add scroll if needed */
+  }
+
+  .form-container h1 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .form-container form {
+    gap: 0.875rem; /* Tighter spacing in landscape */
+  }
+
+  .form-container input {
+    padding: 0.65rem 0.8rem; /* More compact in landscape */
+  }
+
+  .form-container button {
+    padding: 0.75rem 1.25rem;
+    margin-top: 0.5rem;
+  }
+}
+
+/* Touch-friendly improvements */
+@media (hover: none) and (pointer: coarse) {
+  .form-container input {
+    padding: 0.875rem; /* Larger touch targets */
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+
+  .form-container button {
+    padding: 1rem 1.5rem; /* Larger button touch area */
+    min-height: 48px; /* Minimum touch target size */
+  }
+
+  .form-toggle-link a {
+    padding: 0.5rem; /* Larger link touch area */
+    margin: -0.5rem; /* Negative margin to maintain visual spacing */
+  }
+}
+
+/* High DPI mobile screens */
+@media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
+  .form-container {
+    border-width: 0.5px; /* Thinner borders on high DPI */
+  }
+
+  .form-container input {
+    border-width: 1px; /* Adjust input borders */
+  }
+}
+
+/* Specific viewport height adjustments for mobile */
+@media (max-width: 768px) and (max-height: 640px) {
+  .form-container {
+    margin: 0.25rem auto; /* Minimal margins on short screens */
+    padding: 1rem;
+    max-height: 95vh;
+  }
+
+  .main-content {
+    padding: 0.5rem 0; /* Reduce main content padding */
+  }
+}
+
+/* Dark mode specific mobile adjustments */
+@media (max-width: 768px) and (prefers-color-scheme: dark) {
+  .form-container {
+    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4),
+      0 0 0 1px rgba(255, 255, 255, 0.03);
+  }
+}
+
+/* Reduce motion on mobile for better performance */
+@media (max-width: 768px) and (prefers-reduced-motion: no-preference) {
+  .form-container::before {
+    animation-duration: 30s; /* Slower animation on mobile */
+  }
+}
+
+/* Focus improvements for mobile */
+@media (max-width: 768px) {
+  .form-container input:focus {
+    transform: none; /* Remove transform on mobile to prevent layout issues */
+    border-color: var(--accent-primary);
+    box-shadow: 0 0 0 3px var(--accent-light);
+  }
+
+  .form-container button:focus-visible {
+    outline-offset: 3px; /* Better focus visibility on mobile */
+  }
+}
 /* === RESPONSIVE CART PAGE IMPROVEMENTS === */
 
 /* --- Enhanced Cart Container Responsiveness --- */
@@ -1422,580 +2191,5 @@ button:active {
   .back-to-shop-btn:focus-visible {
     outline: 2px solid var(--accent-primary);
     outline-offset: 3px;
-  }
-}
-/* --- Premium Notifications --- */
-.notification {
-  position: fixed;
-  bottom: 2rem;
-  left: 50%;
-  transform: translateX(-50%);
-  padding: 1rem 2rem;
-  border-radius: var(--border-radius-xl);
-  color: white;
-  font-weight: 600;
-  box-shadow: var(--shadow-xl);
-  z-index: 1000;
-  animation: slideInOut 4s cubic-bezier(0.4, 0, 0.2, 1) forwards;
-  font-size: 0.875rem;
-  backdrop-filter: var(--blur-backdrop);
-  min-width: 300px;
-  text-align: center;
-}
-
-.notification.success {
-  background: linear-gradient(135deg, var(--success-color), #059669);
-  box-shadow: var(--shadow-xl), 0 0 20px rgba(16, 185, 129, 0.4);
-}
-
-.notification.error {
-  background: linear-gradient(135deg, var(--danger-color), #dc2626);
-  box-shadow: var(--shadow-xl), 0 0 20px rgba(244, 63, 94, 0.4);
-}
-
-@keyframes slideInOut {
-  0% {
-    opacity: 0;
-    transform: translateX(-50%) translateY(100px) scale(0.8);
-  }
-  10%,
-  90% {
-    opacity: 1;
-    transform: translateX(-50%) translateY(0) scale(1);
-  }
-  100% {
-    opacity: 0;
-    transform: translateX(-50%) translateY(-20px) scale(0.9);
-  }
-}
-
-/* --- Navigation Back Button --- */
-.nav-back-btn {
-  color: var(--text-secondary);
-  text-decoration: none;
-  font-weight: 500;
-  background: none;
-  border: none;
-  cursor: pointer;
-  font-size: 0.875rem;
-  transition: all 0.3s ease;
-  padding: 0.75rem 1rem;
-  border-radius: var(--border-radius-md);
-  font-family: "Inter", sans-serif;
-}
-
-.nav-back-btn:hover {
-  color: var(--text-primary);
-  background: var(--bg-tertiary);
-  transform: translateX(-2px);
-}
-/* admin page */
-.admin-page h1 {
-  font-size: 1.75rem;
-  font-weight: 800;
-  text-align: center;
-  color: var(--accent-primary);
-  margin-bottom: 2rem;
-  position: relative;
-}
-
-.admin-page h1::after {
-  content: "";
-  display: block;
-  width: 60px;
-  height: 3px;
-  background: var(--accent-primary);
-  margin: 0.5rem auto 0;
-  border-radius: 3px;
-}
-.admin-form {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 2rem 1.5rem;
-}
-
-.admin-form .form-group {
-  display: flex;
-  flex-direction: column;
-}
-
-.admin-form .form-span-2 {
-  grid-column: span 2;
-}
-.admin-form label {
-  margin-bottom: 0.4rem;
-  font-weight: 600;
-  font-size: 0.9rem;
-  color: var(--text-secondary);
-}
-
-.admin-form input,
-.admin-form select,
-.admin-form textarea {
-  border-radius: 10px;
-  padding: 0.9rem 1rem;
-  font-size: 0.95rem;
-}
-.form-container {
-  background: var(--bg-primary);
-  padding: 2rem 2.5rem;
-  border-radius: 16px;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
-  margin: 2rem auto;
-}
-.admin-buttons-container {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-top: 2rem;
-}
-
-.admin-submit-btn,
-.admin-delete-btn {
-  flex: 1;
-  text-align: center;
-}
-
-/* --- Loading Spinner --- */
-.spinner-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 5rem;
-}
-
-.spinner {
-  width: 60px;
-  height: 60px;
-  border: 4px solid var(--border-primary);
-  border-top: 4px solid var(--accent-primary);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
-  position: relative;
-}
-
-.spinner::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 20px;
-  height: 20px;
-  background: var(--accent-primary);
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0.8;
-  animation: pulse 2s ease-in-out infinite;
-}
-
-@keyframes spin {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-@keyframes pulse {
-  0%,
-  100% {
-    transform: translate(-50%, -50%) scale(1);
-    opacity: 0.8;
-  }
-  50% {
-    transform: translate(-50%, -50%) scale(1.2);
-    opacity: 0.4;
-  }
-}
-
-/* --- Enhanced Responsive Design --- */
-@media (max-width: 1024px) {
-  .admin-form {
-    grid-template-columns: 1fr;
-    gap: 1.5rem;
-  }
-
-  .form-span-2 {
-    grid-column: span 1;
-  }
-
-  .admin-buttons-container {
-    grid-column: span 1;
-    flex-direction: column;
-  }
-}
-
-@media (max-width: 768px) {
-  .container {
-    padding: 0 1rem;
-  }
-
-  .navbar {
-    padding: 0 1rem;
-    height: 70px;
-  }
-
-  .logo {
-    font-size: 1.5rem;
-  }
-
-  .nav-links {
-    gap: 0.5rem;
-  }
-
-  .nav-links a,
-  .nav-links button {
-    font-size: 0.8rem;
-    padding: 0.5rem 0.75rem;
-  }
-
-  .container h1 {
-    font-size: 2rem;
-  }
-
-  .product-list {
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 1.5rem;
-  }
-
-  .cart-container {
-    grid-template-columns: 1fr;
-    gap: 2rem;
-  }
-
-  .filters {
-    flex-direction: column;
-    gap: 1rem;
-    align-items: stretch;
-    padding: 1.25rem;
-  }
-
-  .filter-group {
-    justify-content: space-between;
-  }
-
-  .form-container {
-    margin: 1rem;
-    padding: 2rem;
-    min-height: 550px;
-  }
-
-  .admin-page {
-    margin: 1rem;
-    padding: 2rem;
-  }
-
-  .admin-page h1 {
-    font-size: 2rem;
-  }
-
-  .cart-item {
-    padding: 1.5rem;
-  }
-
-  .cart-item-image {
-    width: 80px;
-    height: 80px;
-  }
-}
-
-@media (max-width: 480px) {
-  .product-list {
-    grid-template-columns: 1fr;
-  }
-
-  .form-container {
-    padding: 1.5rem;
-    min-height: 500px;
-  }
-
-  .admin-page {
-    padding: 1.5rem;
-  }
-
-  .navbar {
-    height: 60px;
-    padding: 0 0.75rem;
-  }
-
-  .logo {
-    font-size: 1.25rem;
-  }
-
-  .nav-links a,
-  .nav-links button {
-    font-size: 0.75rem;
-    padding: 0.4rem 0.6rem;
-  }
-}
-
-/* --- Accessibility Improvements --- */
-@media (prefers-reduced-motion: reduce) {
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-  }
-}
-
-/* --- Focus Visible for Better Accessibility --- */
-button:focus-visible,
-input:focus-visible,
-select:focus-visible,
-textarea:focus-visible {
-  outline: 2px solid var(--accent-primary);
-  outline-offset: 2px;
-}
-
-/* --- High Contrast Mode Support --- */
-@media (prefers-contrast: high) {
-  :root {
-    --text-primary: #ffffff;
-    --text-secondary: #e5e5e5;
-    --border-primary: #666666;
-    --bg-secondary: #1a1a1a;
-  }
-}
-
-/* --- Dark Mode Enhancements --- */
-@media (prefers-color-scheme: dark) {
-  body {
-    color-scheme: dark;
-  }
-}
-/* --- Clear Cart Button Style --- */
-.clear-cart-btn {
-  display: block;
-  margin: 0 auto 2rem auto; /* Center the button */
-  background: none;
-  border: 1px solid var(--danger-color);
-  color: var(--danger-color);
-  box-shadow: none;
-  text-transform: none;
-  font-weight: 500;
-}
-
-.clear-cart-btn:hover {
-  background: var(--danger-color);
-  color: white;
-  transform: none;
-}
-/* --- Cart Subtotal Styles --- */
-.subtotal-list {
-  margin-bottom: 1.5rem;
-  padding-bottom: 1.5rem;
-  border-bottom: 1px solid var(--border-primary);
-}
-
-.subtotal-item {
-  display: flex;
-  justify-content: space-between;
-  color: var(--text-secondary);
-  font-size: 0.9rem;
-  margin-bottom: 0.75rem;
-}
-
-.subtotal-item span:first-child {
-  max-width: 70%;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-/* --- Enhanced Mobile Responsive Design for Forms --- */
-
-/* Override existing form-container styles for better mobile experience */
-@media (max-width: 768px) {
-  .form-container {
-    min-width: unset; /* Remove fixed min-width */
-    width: 100%; /* Full width on mobile */
-    max-width: 400px; /* Reasonable max width */
-    margin: 1rem auto; /* Center with small margins */
-    padding: 1.5rem; /* Reduced padding */
-    border-radius: var(--border-radius-xl); /* Slightly smaller border radius */
-    box-shadow: var(--shadow-lg); /* Lighter shadow for mobile */
-  }
-
-  .form-container h1 {
-    font-size: 1.75rem; /* Smaller title */
-    margin-bottom: 1.25rem; /* Reduced margin */
-  }
-
-  .form-container h1::after {
-    width: 60px; /* Smaller underline */
-    height: 2px;
-  }
-
-  .form-container form {
-    gap: 1rem; /* Reduced gap between form elements */
-  }
-
-  .form-container label {
-    font-size: 0.8rem; /* Smaller label text */
-    margin-bottom: 0.4rem;
-  }
-
-  .form-container input {
-    padding: 0.75rem 0.875rem; /* Reduced input padding */
-    font-size: 0.875rem; /* Slightly smaller input text */
-  }
-
-  .form-container button {
-    padding: 0.875rem 1.5rem; /* Reduced button padding */
-    font-size: 0.875rem; /* Smaller button text */
-    margin-top: 0.25rem;
-  }
-
-  .form-toggle-link {
-    margin-top: 0.75rem; /* Reduced spacing */
-    font-size: 0.8rem; /* Smaller toggle link text */
-  }
-
-  .form-error-container {
-    height: 1.75rem; /* Reduced error container height */
-  }
-
-  .form-error {
-    font-size: 0.8rem; /* Smaller error text */
-  }
-}
-
-/* Extra small mobile devices */
-@media (max-width: 480px) {
-  .container {
-    padding: 0 0.75rem; /* Even smaller container padding */
-  }
-
-  .form-container {
-    margin: 0.75rem auto; /* Smaller margins */
-    padding: 1.25rem; /* Even more reduced padding */
-    max-width: 350px; /* Smaller max width for very small screens */
-  }
-
-  .form-container h1 {
-    font-size: 1.5rem; /* Even smaller title */
-    margin-bottom: 1rem;
-  }
-
-  .form-container h1::after {
-    width: 50px; /* Even smaller underline */
-  }
-
-  .form-container input {
-    padding: 0.7rem 0.8rem; /* More compact input padding */
-    font-size: 0.85rem;
-  }
-
-  .form-container button {
-    padding: 0.8rem 1.25rem; /* More compact button */
-    font-size: 0.85rem;
-  }
-
-  .form-container label {
-    font-size: 0.75rem; /* Even smaller labels */
-  }
-
-  .form-toggle-link {
-    font-size: 0.75rem; /* Smaller toggle text */
-  }
-}
-
-/* Landscape orientation on mobile */
-@media (max-width: 768px) and (orientation: landscape) {
-  .form-container {
-    margin: 0.5rem auto; /* Smaller top/bottom margins in landscape */
-    padding: 1.25rem;
-    max-height: 90vh; /* Prevent overflow in landscape */
-    overflow-y: auto; /* Add scroll if needed */
-  }
-
-  .form-container h1 {
-    font-size: 1.5rem;
-    margin-bottom: 1rem;
-  }
-
-  .form-container form {
-    gap: 0.875rem; /* Tighter spacing in landscape */
-  }
-
-  .form-container input {
-    padding: 0.65rem 0.8rem; /* More compact in landscape */
-  }
-
-  .form-container button {
-    padding: 0.75rem 1.25rem;
-    margin-top: 0.5rem;
-  }
-}
-
-/* Touch-friendly improvements */
-@media (hover: none) and (pointer: coarse) {
-  .form-container input {
-    padding: 0.875rem; /* Larger touch targets */
-    font-size: 16px; /* Prevent zoom on iOS */
-  }
-
-  .form-container button {
-    padding: 1rem 1.5rem; /* Larger button touch area */
-    min-height: 48px; /* Minimum touch target size */
-  }
-
-  .form-toggle-link a {
-    padding: 0.5rem; /* Larger link touch area */
-    margin: -0.5rem; /* Negative margin to maintain visual spacing */
-  }
-}
-
-/* High DPI mobile screens */
-@media (max-width: 768px) and (-webkit-min-device-pixel-ratio: 2) {
-  .form-container {
-    border-width: 0.5px; /* Thinner borders on high DPI */
-  }
-
-  .form-container input {
-    border-width: 1px; /* Adjust input borders */
-  }
-}
-
-/* Specific viewport height adjustments for mobile */
-@media (max-width: 768px) and (max-height: 640px) {
-  .form-container {
-    margin: 0.25rem auto; /* Minimal margins on short screens */
-    padding: 1rem;
-    max-height: 95vh;
-  }
-
-  .main-content {
-    padding: 0.5rem 0; /* Reduce main content padding */
-  }
-}
-
-/* Dark mode specific mobile adjustments */
-@media (max-width: 768px) and (prefers-color-scheme: dark) {
-  .form-container {
-    box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.4),
-      0 0 0 1px rgba(255, 255, 255, 0.03);
-  }
-}
-
-/* Reduce motion on mobile for better performance */
-@media (max-width: 768px) and (prefers-reduced-motion: no-preference) {
-  .form-container::before {
-    animation-duration: 30s; /* Slower animation on mobile */
-  }
-}
-
-/* Focus improvements for mobile */
-@media (max-width: 768px) {
-  .form-container input:focus {
-    transform: none; /* Remove transform on mobile to prevent layout issues */
-    border-color: var(--accent-primary);
-    box-shadow: 0 0 0 3px var(--accent-light);
-  }
-
-  .form-container button:focus-visible {
-    outline-offset: 3px; /* Better focus visibility on mobile */
   }
 }
